@@ -107,154 +107,87 @@
     function projects_isotope(){
         if ( $('.projects_area').length ){
             var $items = $(".projects_inner .projects_col");
-            var filterDuration = 760;
-            var staggerStep = 70;
-            var filterTimer = null;
-
-            var clearDelays = function($set){
-                $set.each(function(){
-                    this.style.transitionDelay = '';
-                });
-            };
-
-            var setDelays = function($set, offset){
-                $set.each(function(index){
-                    this.style.transitionDelay = ((offset || 0) + (index * staggerStep)) + 'ms';
-                });
-            };
-
-            var revealItems = function($set){
-                $set.each(function(){
-                    var $item = $(this);
-
-                    if (!$item.hasClass('d-none')) {
-                        return;
-                    }
-
-                    $item.removeClass('d-none is-leaving').addClass('is-entering');
-
-                    window.requestAnimationFrame(function(){
-                        window.requestAnimationFrame(function(){
-                            $item.removeClass('is-entering');
-                        });
-                    });
-                });
-            };
-
             var applyFilter = function(selector){
-                if (filterTimer) {
-                    window.clearTimeout(filterTimer);
-                    filterTimer = null;
-                }
-
                 if (!selector || selector === '*'){
-                    clearDelays($items);
-                    $items.removeClass('is-leaving');
-                    revealItems($items);
                     $items.removeClass('d-none');
                     return;
                 }
-
                 var cls = selector.replace(/^\./, '');
-                var $matching = $items.filter('.' + cls);
-                var $hiding = $items.not($matching);
-
-                setDelays($hiding, 0);
-                setDelays($matching, 140);
-
-                $hiding.each(function(){
-                    var $item = $(this);
-
-                    if ($item.hasClass('d-none')) {
-                        return;
-                    }
-
-                    $item.removeClass('is-entering').addClass('is-leaving');
+                $items.each(function(){
+                    $(this).toggleClass('d-none', !$(this).hasClass(cls));
                 });
-
-                revealItems($matching);
-
-                filterTimer = window.setTimeout(function(){
-                    $hiding.addClass('d-none').removeClass('is-leaving is-entering');
-                    $matching.removeClass('is-leaving is-entering');
-                    clearDelays($items);
-                }, filterDuration);
             };
 
             // init
             applyFilter('*');
 
-            // Handle clicks on the filter list robustly (li or contained anchor)
-            $(".filter").on('click', 'li, li a', function(e){
-                e.preventDefault();
-                var $li = $(this).closest('li');
+            $(".filter li").on('click', function(){
                 $(".filter li").removeClass('active');
-                $li.addClass('active');
-                var filterVal = $li.attr('data-filter') || '*';
-                applyFilter(filterVal);
+                $(this).addClass('active');
+                applyFilter($(this).attr('data-filter'));
+                return false;
             });
         }
     }
     projects_isotope();
-
+	
+	
+	/*----------------------------------------------------*/
+    /*  Testimonials Slider
     /*----------------------------------------------------*/
-    /*  Scroll reveal animations
-    /*----------------------------------------------------*/
-    function scrollRevealAnimations(){
-        var revealSelectors = [
-            '.main_title',
-            '.welcome_text',
-            '.welcome_inner .welcome_img',
-            '.feature_item',
-            '.projects_item',
-            '.l_blog_item',
-            '.contact_info .info_item',
-            '.contact_form',
-            '.footer_area .f_title',
-            '.footer_area .ab_widget',
-            '.footer_area .news_widget',
-            '.footer_area .social_widget'
-        ];
-
-        var elements = $(revealSelectors.join(', '));
-        if (!elements.length) {
-            return;
+    function testimonials_slider(){
+        if ( $('.testi_slider').length ){
+            $('.testi_slider').owlCarousel({
+                loop:true,
+                margin: 30,
+                items: 3,
+                nav: false,
+                autoplay: true,
+                smartSpeed: 1500,
+                dots:true, 
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                    },
+                    768: {
+                        items: 3,
+                    },
+                }
+            })
         }
-
-        elements.each(function(index){
-            var stagger = index % 4;
-            $(this).addClass('reveal-on-scroll').css('--reveal-delay', (stagger * 120) + 'ms');
-        });
-
-        var ticking = false;
-        var revealOffset = Math.min(window.innerHeight * 0.82, 760);
-
-        var update = function(){
-            ticking = false;
-            elements.each(function(){
-                if (this.classList.contains('is-visible')) {
-                    return;
-                }
-
-                var rect = this.getBoundingClientRect();
-                if (rect.top < revealOffset && rect.bottom > 0) {
-                    this.classList.add('is-visible');
-                }
-            });
-        };
-
-        var requestUpdate = function(){
-            if (!ticking) {
-                ticking = true;
-                window.requestAnimationFrame(update);
-            }
-        };
-
-        update();
-        $(window).on('scroll resize orientationchange', requestUpdate);
     }
-
-    scrollRevealAnimations();
+    testimonials_slider();
+	
+	
+	/*----------------------------------------------------*/
+    /*  Testimonials Slider
+    /*----------------------------------------------------*/
+//    function testimonials_slider(){
+//        if ( $('.testi_slider').length ){
+//            $('.testi_slider').owlCarousel({
+//                loop:true,
+//                margin: 30,
+//                items: 2,
+//                nav: true,
+//                autoplay: false,
+//                smartSpeed: 1500,
+//                dots:true, 
+//				navContainer: '.testimonials_area',
+//                navText: ['<i class="lnr lnr-arrow-up"></i>','<i class="lnr lnr-arrow-down"></i>'],
+//                responsiveClass: true,
+//                responsive: {
+//                    0: {
+//                        items: 1,
+//                    },
+//                    768: {
+//                        items: 2,
+//                    },
+//                }
+//            })
+//        }
+//    }
+//    testimonials_slider();
 	
 	
 	/*----------------------------------------------------*/

@@ -26,6 +26,24 @@
   document.addEventListener('click', event => { if (!event.target.closest('.site-header')) closeMenu(); });
   matchMedia('(min-width: 801px)').addEventListener('change', closeMenu);
 
+  // Keep projects unobstructed while browsing; bring navigation back on upward scroll.
+  const header = document.querySelector('.site-header');
+  let previousScroll = window.scrollY;
+  let headerFrame = 0;
+  window.addEventListener('scroll', () => {
+    if (headerFrame) return;
+    headerFrame = requestAnimationFrame(() => {
+      headerFrame = 0;
+      const currentScroll = Math.max(0, window.scrollY);
+      const menuOpen = menu?.getAttribute('aria-expanded') === 'true';
+      if (currentScroll < 160 || menuOpen) header?.classList.remove('is-away');
+      else if (Math.abs(currentScroll - previousScroll) > 6) {
+        header?.classList.toggle('is-away', currentScroll > previousScroll);
+      }
+      if (Math.abs(currentScroll - previousScroll) > 6 || currentScroll < 160) previousScroll = currentScroll;
+    });
+  }, { passive: true });
+
   function createProjectCarousel(track) {
     if (!track) return null;
     const root = track.closest('.project-carousel');

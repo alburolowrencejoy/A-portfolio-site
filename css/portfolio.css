@@ -25,6 +25,8 @@ em { font-style: normal; color: var(--green); }
 .skip-link { position: fixed; top: -90px; left: 20px; z-index: 100; padding: 12px 20px; background: var(--green); color: #07130d; }
 .skip-link:focus { top: 10px; }
 .site-header { position: sticky; top: 18px; z-index: 30; width: min(1040px, calc(100% - 48px)); margin: 18px auto -104px; }
+.site-header { transition: transform .25s ease, opacity .25s ease; }
+.site-header.is-away:not(:focus-within) { transform: translateY(calc(-100% - 24px)); opacity: 0; pointer-events: none; }
 .nav-wrap { min-height: 86px; padding: 12px 22px 12px 13px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border: 1px solid #2d3235; border-radius: 70px; background: #22262aee; backdrop-filter: blur(20px); box-shadow: 0 15px 45px #0003; }
 .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; line-height: 1.5; }
 .brand small { display: block; color: #b1b7b4; font-size: 11px; font-weight: 400; }

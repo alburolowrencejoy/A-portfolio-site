@@ -1,0 +1,17 @@
+.project-image{aspect-ratio:4/3;background:#e8edde;display:flex;align-items:center;justify-content:center}
+.project-image>img{width:100%;height:100%;object-fit:cover}
+.project-image.smart-preview{background:#dce7db}
+.project-image.smart-preview>img{height:87%;width:auto;max-width:80%;object-fit:contain;border-radius:8px;box-shadow:0 12px 28px #173e2926}
+.project-image.share-preview>img{filter:brightness(.85);object-position:center}
+.share-brand{position:absolute;left:25px;top:25px;background:#fffdf5;padding:10px 18px 10px 10px;border-radius:10px;display:flex;align-items:center;gap:10px;font-size:20px;font-weight:600;color:#295f4c;box-shadow:0 4px 20px #172e2917}
+.share-brand>img{border-radius:6px;width:40px;height:40px;flex:none;object-fit:contain}
+.share-preview .image-caption,.ai-preview .image-caption{background:#fffdf2e8;border-radius:3px;padding:3px 7px}
+.project-image.ai-preview{background:#d6ccc0}
+.project-image.ai-preview>img{object-fit:contain;padding:20px}
+.detail-contact{display:table;margin-top:20px}
+.detail-image{height:560px;width:100%;object-fit:contain;padding:20px}
+.filters{flex-wrap:wrap}
+.image-arrow,.button span,.portrait-star,.contact-star,.brand-icon,.text-link,.project-title>span,.nav-contact,.floating-note>span,.hero-note>span{font-family:Arial,'DejaVu Sans',sans-serif}
+.brand-icon{font-family:Georgia,'DejaVu Sans',serif}
+.project-title>span{font-family:'DejaVu Sans',sans-serif}
+@media(max-width:720px){.detail-image{height:400px}.share-brand{font-size:18px;left:18px;top:18px}.project-image.ai-preview>img{padding:10px}}

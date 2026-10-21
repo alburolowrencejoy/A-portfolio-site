@@ -1,64 +1,42 @@
 # Lowrence Joy Alburo — Portfolio
 
-This folder contains a personal portfolio website based on a responsive HTML template.
+A responsive, dependency-free portfolio for web, mobile, and connected development work.
 
-## What I changed
-- Replaced template branding with `Lowrence Joy Alburo`.
-- Updated homepage hero, about page, portfolio items, contact email, and skills to reflect the stack: HTML, CSS, Bootstrap, PHP, Laravel, Firebase, XAMPP, Flutter/Dart.
-- Added a placeholder headshot: `img/profile.svg`.
-- Replaced project thumbnails with lightweight SVG placeholders: `img/projects/placeholder-1.svg`.
+## Local development
 
-## Local preview (Windows)
-1. Open a simple local server (recommended) from the project root:
+From the repository root:
 
-```powershell
-# Using Python 3 (if installed)
-python -m http.server 8000
-# or using PowerShell's built-in server (PowerShell 6+)
-# Start-Process "pwsh" -ArgumentList "-NoExit","-Command","python -m http.server 8000"
+```sh
+python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-2. Open `http://localhost:8000/index.html` in your browser.
+Visit `http://127.0.0.1:8000`. No package installation or build is required. The site also works on GitHub Pages, including project detail URLs.
 
-Note: The contact form (`contact_process.php`) requires a PHP-enabled server. To preview form behavior locally, install XAMPP and place this folder in the `htdocs` directory, or run PHP's built-in server:
+## Structure
 
-```powershell
-# From project root
-php -S localhost:8000
-```
+- `index.html`: selected work, about, expertise, and contact.
+- `project.html?project=smart-switch`: Smart Switch overview.
+- `project.html?project=shareplate`: SharePlate overview.
+- `project.html?project=ai-virtual-office`: AI Virtual Office overview.
+- `css/portfolio.css`: responsive layout, hover effects, and reduced-motion support.
+- `js/portfolio.js`: mobile navigation, project filtering, scroll reveals, and email copying.
+- `js/project.js`: project descriptions and next-project navigation.
+- `img/projects/`: project images copied from the owner-provided repositories.
 
-## Optimize / Replace Images
-To replace the SVG placeholders with real images, copy your optimized JPEG/PNG files into `img/projects/` and update `portfolio.html` (or keep filenames the same as originals: `projects-1.jpg`...).
+## Project materials
 
-To batch-optimize images locally, install ImageMagick and run (example):
+Project descriptions live in `js/project.js`; keep the summaries in `index.html` in sync. Every detail page links to the supplied GitHub repository. No hosted demo URL was supplied.
 
-```powershell
-# Resize to max width 1200px and compress
-magick mogrify -path img/projects/optimized -resize 1200x -quality 80 img/projects/*.{jpg,png}
-```
+Asset sources:
 
-Or use a Node tool like `sharp`:
+- Smart Switch: `promo/phone-img.jpg` from [smartpowerswitch](https://github.com/alburolowrencejoy/smartpowerswitch), revision `3b7d6e20e35625a8741731b9693df0e36250309f`. This is repository promotional artwork.
+- SharePlate: `public/mock-food/prepared-meals.jpg` and `public/brand/app-icon.png` from [shareplate](https://github.com/alburolowrencejoy/shareplate). These are food and brand assets, not a UI screenshot.
+- AI Virtual Office: `public/img/office-map.png` from [ai-virtual-office](https://github.com/alburolowrencejoy/ai-virtual-office). This is the actual office map asset.
 
-```bash
-npm init -y
-npm install sharp
-# create a small script to resize and compress images using sharp
-```
+## Contact
 
-## Deployment (GitHub Pages)
-1. Create a new GitHub repository and push this project.
-2. In the repo settings -> Pages, set source to the `main` branch and folder `/ (root)`.
-3. Wait a minute; your site will be available at `https://<username>.github.io/<repo>/`.
+Contact buttons open the visitor’s email application. Copy email uses the browser Clipboard API with a helpful fallback when permission is unavailable. No message is sent or claimed to be delivered by the website. The old PHP mail handler is retained for reference but is not used by the new UI.
 
-If you want to host at the root domain (https://<username>.github.io), place the site files at the repository root of a repo named `<username>.github.io`.
+## Verification
 
-## Next recommended steps
-- Replace `img/projects/placeholder-1.svg` with real project images (optimized). 
-- Add `CNAME` if you have a custom domain.
-- Verify `contact_process.php` works on a PHP-enabled host (or replace with a serverless form service).
-
-If you want, I can:
-- Optimize existing JPGs programmatically here (requires installing ImageMagick or Python packages).
-- Replace placeholders with images you upload.
-- Push to a new GitHub repo and enable Pages for you.
-
+Check all three project links, next/back navigation, all four filters, the mobile menu, copy email, and reduced-motion preferences. Validate narrow and wide viewports and ensure local assets return HTTP 200. Template blog, elements, documentation, and duplicate portfolio HTML pages have been removed; recover them from Git history if needed.

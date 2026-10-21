@@ -2,6 +2,8 @@
 
 A responsive, dependency-free portfolio for web, mobile, and connected development work.
 
+The hero and About sections use `img/banner/portrait-enhanced.png`, a warmer, color-balanced AI-retouched version of the original portrait with transparency preserved. The original `img/banner/home-left-1.png` remains unchanged. Portrait desaturation filters have been removed so the photo displays in full color.
+
 ## Local development
 
 From the repository root:

@@ -30,11 +30,11 @@
   background: #15171b;
   box-shadow: 0 12px 25px #0002;
   opacity: .52;
-  transform: translateY(5px) scale(.965);
+  transform: none;
   scroll-snap-align: start;
-  transition: opacity .45s ease, transform .7s cubic-bezier(.16,1,.3,1), border-color .25s;
+  transition: opacity .35s ease, border-color .25s;
 }
-#work .project-card.is-inview, #work .project-card:focus-within { opacity: 1; transform: scale(1); }
+#work .project-card.is-inview, #work .project-card:focus-within { opacity: 1; }
 #work .project-card[hidden] { display: none; }
 #work .project-card:hover, #work .project-card:focus-within { border-color: #626875; }
 #work .project-image {

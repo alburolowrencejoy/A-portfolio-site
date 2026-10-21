@@ -74,32 +74,28 @@
     let cards = [];
     let stops = [];
     let frame = 0;
-    let lastScroll = track.scrollLeft;
-    let direction = 1;
+    let pendingStop = null;
+    let settleTimer;
 
-    const animateArrival = (card, order = 0) => {
+    const animateArrival = (card, order = 0, initial = false) => {
       if (reducedMotion.matches || !card.animate) return;
       const bounds = track.getBoundingClientRect();
       if (bounds.bottom < 0 || bounds.top > innerHeight) return;
-      card.getAnimations().forEach(animation => animation.cancel());
-      card.animate([
-        { transform: `translate3d(${direction * 22}px, 12px, 0) rotate(${direction * .65}deg) scale(.965)`, opacity: .65 },
-        { transform: `translate3d(${-direction * 2}px, -2px, 0) rotate(${-direction * .08}deg) scale(1.004)`, opacity: 1, offset: .72 },
-        { transform: 'translate3d(0, 0, 0) rotate(0deg) scale(1)', opacity: 1 }
-      ], { duration: 760, delay: order * 55, easing: 'cubic-bezier(.16, 1, .3, 1)' });
-      card.querySelectorAll('.project-meta, .project-title, .project-body>p, .tags, .project-cta').forEach((element, index) => {
+      // Never transform the snap target: moving it makes native snapping jump,
+      // particularly when navigating back to a card from the left.
+      if (initial) card.querySelectorAll('.project-meta, .project-title, .project-body>p, .tags, .project-cta').forEach((element, index) => {
         element.getAnimations().forEach(animation => animation.cancel());
         element.animate([
-          { transform: 'translateY(9px)', opacity: .45 },
+          { transform: 'translateY(7px)', opacity: .8 },
           { transform: 'translateY(0)', opacity: 1 }
         ], { duration: 500, delay: 80 + order * 55 + index * 45, easing: 'cubic-bezier(.16, 1, .3, 1)' });
       });
       const image = card.querySelector('.project-image img');
       image?.getAnimations().forEach(animation => animation.cancel());
       image?.animate([
-        { transform: 'scale(1.045)' },
+        { transform: initial ? 'scale(1.04)' : 'scale(1.02)' },
         { transform: 'scale(1)' }
-      ], { duration: 1000, easing: 'cubic-bezier(.16, 1, .3, 1)' });
+      ], { duration: 800, easing: 'cubic-bezier(.16, 1, .3, 1)' });
     };
 
     const nearestStop = () => stops.reduce((best, position, index) =>
@@ -107,11 +103,8 @@
 
     const update = () => {
       const visible = [];
-      const delta = track.scrollLeft - lastScroll;
-      if (Math.abs(delta) > .5) direction = delta > 0 ? 1 : -1;
-      lastScroll = track.scrollLeft;
       cards.forEach((card, index) => {
-        // Use layout coordinates so the spring transforms never affect slide detection.
+        // Visibility is based on stable layout coordinates, not animated images.
         const left = card.offsetLeft - track.scrollLeft;
         const overlap = Math.max(0, Math.min(left + card.offsetWidth, track.clientWidth) - Math.max(left, 0));
         const inView = overlap > card.offsetWidth * .5;
@@ -120,7 +113,7 @@
         if (entering) animateArrival(card);
         if (inView) visible.push(index);
       });
-      const current = nearestStop();
+      const current = pendingStop ?? nearestStop();
       previous.disabled = current === 0 || stops.length < 2;
       next.disabled = current === stops.length - 1 || stops.length < 2;
       dots.querySelectorAll('button').forEach((dot, index) => {
@@ -135,10 +128,13 @@
 
     const moveTo = index => {
       const target = Math.max(0, Math.min(index, stops.length - 1));
+      pendingStop = target;
       track.scrollTo({ left: stops[target] || 0, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+      update();
     };
 
     const refresh = (reset = false) => {
+      pendingStop = null;
       cards = Array.from(track.querySelectorAll('.project-card')).filter(card => !card.hidden);
       const origin = cards[0]?.offsetLeft || 0;
       const maximum = Math.max(0, track.scrollWidth - track.clientWidth);
@@ -167,20 +163,25 @@
       update();
     };
 
-    previous.addEventListener('click', () => moveTo(nearestStop() - 1));
-    next.addEventListener('click', () => moveTo(nearestStop() + 1));
+    previous.addEventListener('click', () => moveTo((pendingStop ?? nearestStop()) - 1));
+    next.addEventListener('click', () => moveTo((pendingStop ?? nearestStop()) + 1));
     track.addEventListener('keydown', event => {
       if (event.altKey || event.ctrlKey || event.metaKey) return;
       if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
       event.preventDefault();
       if (event.key === 'Home') moveTo(0);
       else if (event.key === 'End') moveTo(stops.length - 1);
-      else moveTo(nearestStop() + (event.key === 'ArrowRight' ? 1 : -1));
+      else moveTo((pendingStop ?? nearestStop()) + (event.key === 'ArrowRight' ? 1 : -1));
     });
     track.addEventListener('scroll', () => {
+      clearTimeout(settleTimer);
+      settleTimer = setTimeout(() => { pendingStop = null; update(); }, 160);
       if (frame) return;
       frame = requestAnimationFrame(() => { frame = 0; update(); });
     }, { passive: true });
+    const releaseTarget = () => { pendingStop = null; };
+    track.addEventListener('pointerdown', releaseTarget, { passive: true });
+    track.addEventListener('wheel', releaseTarget, { passive: true });
     track.addEventListener('focusin', event => {
       const card = event.target.closest('.project-card');
       if (!card || card.hidden) return;
@@ -197,7 +198,7 @@
     if ('IntersectionObserver' in window) {
       const entrance = new IntersectionObserver(entries => {
         if (!entries.some(entry => entry.isIntersecting)) return;
-        cards.filter(card => card.classList.contains('is-inview')).forEach((card, index) => animateArrival(card, index));
+        cards.filter(card => card.classList.contains('is-inview')).forEach((card, index) => animateArrival(card, index, true));
         entrance.disconnect();
       }, { threshold: .2 });
       entrance.observe(track);

@@ -74,18 +74,50 @@
     let cards = [];
     let stops = [];
     let frame = 0;
+    let lastScroll = track.scrollLeft;
+    let direction = 1;
+
+    const animateArrival = (card, order = 0) => {
+      if (reducedMotion.matches || !card.animate) return;
+      const bounds = track.getBoundingClientRect();
+      if (bounds.bottom < 0 || bounds.top > innerHeight) return;
+      card.getAnimations().forEach(animation => animation.cancel());
+      card.animate([
+        { transform: `translate3d(${direction * 22}px, 12px, 0) rotate(${direction * .65}deg) scale(.965)`, opacity: .65 },
+        { transform: `translate3d(${-direction * 2}px, -2px, 0) rotate(${-direction * .08}deg) scale(1.004)`, opacity: 1, offset: .72 },
+        { transform: 'translate3d(0, 0, 0) rotate(0deg) scale(1)', opacity: 1 }
+      ], { duration: 760, delay: order * 55, easing: 'cubic-bezier(.16, 1, .3, 1)' });
+      card.querySelectorAll('.project-meta, .project-title, .project-body>p, .tags, .project-cta').forEach((element, index) => {
+        element.getAnimations().forEach(animation => animation.cancel());
+        element.animate([
+          { transform: 'translateY(9px)', opacity: .45 },
+          { transform: 'translateY(0)', opacity: 1 }
+        ], { duration: 500, delay: 80 + order * 55 + index * 45, easing: 'cubic-bezier(.16, 1, .3, 1)' });
+      });
+      const image = card.querySelector('.project-image img');
+      image?.getAnimations().forEach(animation => animation.cancel());
+      image?.animate([
+        { transform: 'scale(1.045)' },
+        { transform: 'scale(1)' }
+      ], { duration: 1000, easing: 'cubic-bezier(.16, 1, .3, 1)' });
+    };
 
     const nearestStop = () => stops.reduce((best, position, index) =>
       Math.abs(position - track.scrollLeft) < Math.abs(stops[best] - track.scrollLeft) ? index : best, 0);
 
     const update = () => {
-      const bounds = track.getBoundingClientRect();
       const visible = [];
+      const delta = track.scrollLeft - lastScroll;
+      if (Math.abs(delta) > .5) direction = delta > 0 ? 1 : -1;
+      lastScroll = track.scrollLeft;
       cards.forEach((card, index) => {
-        const rect = card.getBoundingClientRect();
-        const overlap = Math.max(0, Math.min(rect.right, bounds.right) - Math.max(rect.left, bounds.left));
-        const inView = overlap > rect.width * .5;
+        // Use layout coordinates so the spring transforms never affect slide detection.
+        const left = card.offsetLeft - track.scrollLeft;
+        const overlap = Math.max(0, Math.min(left + card.offsetWidth, track.clientWidth) - Math.max(left, 0));
+        const inView = overlap > card.offsetWidth * .5;
+        const entering = inView && !card.classList.contains('is-inview');
         card.classList.toggle('is-inview', inView);
+        if (entering) animateArrival(card);
         if (inView) visible.push(index);
       });
       const current = nearestStop();
@@ -162,6 +194,17 @@
     controls.hidden = false;
     refresh();
     document.documentElement.classList.add('carousel-ready');
+    if ('IntersectionObserver' in window) {
+      const entrance = new IntersectionObserver(entries => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+        cards.filter(card => card.classList.contains('is-inview')).forEach((card, index) => animateArrival(card, index));
+        entrance.disconnect();
+      }, { threshold: .2 });
+      entrance.observe(track);
+    }
+    reducedMotion.addEventListener('change', event => {
+      if (event.matches) track.getAnimations({ subtree: true }).forEach(animation => animation.cancel());
+    });
     if ('ResizeObserver' in window) new ResizeObserver(() => refresh()).observe(track);
     else window.addEventListener('resize', () => refresh());
     return { refresh };

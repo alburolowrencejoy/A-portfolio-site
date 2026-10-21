@@ -29,10 +29,10 @@
   border-radius: 22px;
   background: #15171b;
   box-shadow: 0 12px 25px #0002;
-  opacity: .65;
-  transform: scale(.98);
+  opacity: .52;
+  transform: translateY(5px) scale(.965);
   scroll-snap-align: start;
-  transition: opacity .4s ease, transform .55s cubic-bezier(.2,.75,.25,1), border-color .25s;
+  transition: opacity .45s ease, transform .7s cubic-bezier(.16,1,.3,1), border-color .25s;
 }
 #work .project-card.is-inview, #work .project-card:focus-within { opacity: 1; transform: scale(1); }
 #work .project-card[hidden] { display: none; }
@@ -70,6 +70,8 @@
 .carousel-buttons button { display: grid; place-items: center; width: 43px; height: 43px; border: 1px solid #424853; border-radius: 50%; background: #1b1e25; color: #f0f3f6; font: 20px/1 'DejaVu Sans',sans-serif; transition: background .2s, border-color .2s; }
 .carousel-buttons button:hover:not(:disabled) { background: #2c323b; border-color: #7a8493; }
 .carousel-buttons button:disabled { opacity: .3; cursor: default; }
+.carousel-buttons button:active:not(:disabled) { transform: scale(.92); }
+.carousel-buttons button { transition: background .2s, border-color .2s, transform .25s cubic-bezier(.34,1.56,.64,1); }
 .carousel-dots { display: flex; gap: 5px; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
 .carousel-dot { display: grid; place-items: center; width: 28px; height: 30px; padding: 0; background: transparent; border: 0; }
 .carousel-dot::before { content: ''; width: 6px; height: 6px; border-radius: 8px; background: #505764; transition: width .25s, background .25s; }

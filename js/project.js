@@ -6,8 +6,8 @@
       "repository": "smartpowerswitch",
       "category": "WEB & MOBILE / IoT",
       "summary": "Campus energy monitoring across web and mobile, connected to real-world devices.",
-      "image": "smart-switch-dashboard.png",
-      "alt": "Smart Switch web dashboard showing campus energy usage, device status, and building consumption",
+      "image": "smart-switch-signin.png",
+      "alt": "Smart Switch web landing and sign-in page",
       "overview": "Smart Switch is a web-and-mobile IoT energy monitoring and utility control system for Davao del Norte State College. Flutter and Firebase Realtime Database connect the application to ESP32 devices and PZEM-004T energy meters across campus buildings.",
       "focus": "The web experience includes a dedicated sign-in screen and a campus dashboard with energy usage, monthly cost, device status, building consumption charts, building load, and recent usage. A compact mobile dashboard brings these readings into a smaller layout. Device management, maps, analytics, automation, and role-based administration support the wider workflow.",
       "tags": [
@@ -18,7 +18,7 @@
         "ESP32",
         "IoT"
       ],
-      "note": "Original web screenshots supplied by the project owner.",
+      "note": "Original web and mobile screenshots supplied by the project owner.",
       "next": "shareplate",
       "nextName": "SharePlate",
       "gallery": [
@@ -31,6 +31,11 @@
           "image": "smart-switch-signin.png",
           "alt": "Smart Switch web sign-in page",
           "caption": "Web · Sign in"
+        },
+        {
+          "image": "smart-switch-mobile-signin.jpg",
+          "alt": "Smart Switch mobile sign-in screen",
+          "caption": "Mobile · Sign in"
         }
       ]
     },
@@ -39,8 +44,8 @@
       "repository": "shareplate",
       "category": "FULL-STACK WEB / COMMUNITY",
       "summary": "Rescuing surplus food by connecting donors with verified community kitchens.",
-      "image": "shareplate-mobile.png",
-      "alt": "SharePlate mobile view showing available food donations and pickup deadlines",
+      "image": "shareplate-home.png",
+      "alt": "SharePlate desktop homepage with Rescue Every Plate heading and food-sharing introduction",
       "overview": "SharePlate is a community food rescue platform built with Next.js, TypeScript, Tailwind CSS, and Supabase. It connects surplus-food donors with verified recipient organizations, with an Expo mobile application sharing the same backend.",
       "focus": "The platform supports organization verification, food listings, claims, pickup and distribution tracking, notifications, and impact reporting. AI-assisted listing drafts help donors get started, while database rules and role-based dashboards support the donation lifecycle.",
       "tags": [
@@ -50,10 +55,20 @@
         "Tailwind CSS",
         "Expo"
       ],
-      "note": "Original mobile screenshot supplied by the project owner.",
+      "note": "Original desktop and mobile screenshots supplied by the project owner.",
       "next": "ai-virtual-office",
       "nextName": "AI Virtual Office",
       "gallery": [
+        {
+          "image": "shareplate-home.png",
+          "alt": "SharePlate desktop homepage",
+          "caption": "Web · Rescue Every Plate homepage"
+        },
+        {
+          "image": "shareplate-listings.png",
+          "alt": "SharePlate desktop Find Food page showing search, filters, donation cards, and pickup deadlines",
+          "caption": "Web · Find Food listings & filters"
+        },
         {
           "image": "shareplate-mobile.png",
           "alt": "SharePlate mobile donation cards with pickup deadlines",
@@ -66,8 +81,8 @@
       "repository": "ai-virtual-office",
       "category": "AI / DEVELOPER TOOLS",
       "summary": "An AI development workforce, brought to life in a real-time 2D office.",
-      "image": "ai-office-live.png",
-      "alt": "AI Virtual Office live office view with agents, tasks, and event stream",
+      "image": "ai-office-signin.png",
+      "alt": "AI Virtual Office landing page introducing the AI software company and owner sign-in",
       "overview": "AI Virtual Office is a Laravel-based MVP for managing an AI development company. A live 2D office makes agent activity visible, while the owner oversees projects, tasks, approvals, and model usage.",
       "focus": "The application combines queued agent jobs, an AI gateway with model routing and budgets, approval gates, code review, and build workflows. Laravel Reverb delivers real-time office updates, with deterministic code driving agent movement and state.",
       "tags": [

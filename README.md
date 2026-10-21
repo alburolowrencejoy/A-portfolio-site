@@ -30,7 +30,7 @@ Sogesyon is a mental-health community app with emotion tracking and discussion f
 
 ## Supplied screenshots
 
-These images are exact, unedited copies from the owner’s `asset.rar` upload:
+These images are exact, unedited copies from the owner’s `asset.rar` and `as.rar` uploads:
 
 | Archive file | Portfolio file | View |
 | --- | --- | --- |
@@ -43,8 +43,13 @@ These images are exact, unedited copies from the owner’s `asset.rar` upload:
 | `careeer.png` | `img/projects/career-connect-home.png` | Career Connect signed out |
 | `careerrr.png` | `img/projects/career-connect-signedin.png` | Career Connect signed in |
 | `sogesyon.jpg` | `img/projects/sogesyon-signin.jpg` | Sogesyon sign-in |
+| `desktop shareplate.png` | `img/projects/shareplate-home.png` | SharePlate desktop homepage |
+| `shareplate desktop.png` | `img/projects/shareplate-listings.png` | SharePlate desktop food listings |
+| `mobile smartswitch.jpg` | `img/projects/smart-switch-mobile-signin.jpg` | Smart Switch mobile sign-in |
 
-The archive does not contain SharePlate’s desktop screenshots or Smart Switch’s mobile screenshot shown earlier in chat. The portfolio uses the supplied files above. ICSA Mobile App and Javank retain their original cover artwork, labeled as such. Older repository images remain available on disk but are no longer used by the updated project cards and details.
+The second archive supplies SharePlate’s desktop views and Smart Switch’s mobile sign-in view. SharePlate’s desktop homepage is its cover, with desktop listings and mobile donations in its gallery. Smart Switch’s gallery includes its web dashboard, web sign-in, and mobile sign-in. ICSA Mobile App and Javank retain their original cover artwork, labeled as such. Older repository images remain available on disk but are no longer used by the updated project cards and details.
+
+Project covers use landing or sign-in screens rather than dashboards: Smart Switch web sign-in, SharePlate desktop homepage, AI Virtual Office owner landing/sign-in, Career Connect landing, and Sogesyon sign-in. Dashboard and office screenshots remain accessible in the detail-page galleries.
 
 ## Interactions
 

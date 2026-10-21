@@ -55,6 +55,10 @@ Project covers use landing or sign-in screens rather than dashboards: Smart Swit
 
 Javank now uses `img/projects/javank-signin-enhanced.png`, a 1648 × 954 AI-enhanced reconstruction of the owner’s small ATM login screenshot. It preserves the card-number/PIN layout and sign-in, clear, and sign-up controls. The cover and gallery identify it as an enhanced preview, rather than an untouched application capture. The old generic cover is retained on disk but is no longer displayed for Javank.
 
+## Typography
+
+Headings use Manrope; body text, navigation, controls, and forms use Inter. Both variable fonts are self-hosted as Latin-subset WOFF2 files (about 73 KB combined), loaded with `font-display: swap` and system fallbacks. Their source packages are `@fontsource-variable/inter@5.3.0` and `@fontsource-variable/manrope@5.3.0`; the SIL Open Font License files are retained under `fonts/inter/OFL.txt` and `fonts/manrope/OFL.txt`. No third-party font request or package installation is needed to run the site. `css/typography.css` contains the shared type scale for the homepage and project pages.
+
 ## Interactions
 
 - Dark, mint-accented layout inspired by the supplied visual reference, including a floating navigation bar and a bento expertise grid.

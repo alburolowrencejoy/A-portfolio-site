@@ -1,0 +1,108 @@
+/* Self-hosted variable fonts. License copies live in each font directory. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/inter/inter-latin-variable.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('../fonts/manrope/manrope-latin-variable.woff2') format('woff2');
+}
+:root {
+  --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Manrope', 'Inter', system-ui, sans-serif;
+}
+body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.75;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+button, input, textarea, select { font-family: var(--font-body); }
+h1, h2, h3 { font-family: var(--font-heading); font-weight: 600; }
+h1, h2 { text-wrap: balance; }
+.hero h1 { font-size: clamp(44px, 4.4vw, 66px); line-height: 1.15; letter-spacing: -.045em; }
+h2, .section-heading h2 { letter-spacing: -.045em; line-height: 1.2; }
+h3, .card-heading h3 { letter-spacing: -.025em; }
+.brand { font-family: var(--font-heading); font-weight: 600; letter-spacing: -.015em; font-size: 14px; }
+.brand small { font-family: var(--font-body); font-size: 11px; font-weight: 400; letter-spacing: 0; }
+nav { font-size: 13px; font-weight: 500; }
+.nav-contact, .button { font-weight: 600; font-size: 12px; letter-spacing: -.01em; }
+.detail-sidebar .button, .footer>a:last-child { font-family: var(--font-body); }
+.eyebrow { font-size: 10px; letter-spacing: .16em; font-weight: 500; }
+.hero-eyebrow { font-size: 10px; letter-spacing: .18em; }
+.hero-description { font-size: 15px; line-height: 1.85; }
+.hero-caption { font-size: 9px; letter-spacing: .09em; }
+.availability { font-size: 11px; }
+.section-heading>p, .section-heading.centered>p:last-child { font-size: 14px; line-height: 1.85; }
+.stack-strip .container>span:not(.stack-label) { font-family: var(--font-heading); font-weight: 600; }
+.stack-strip .stack-label { font-size: 9px; letter-spacing: .12em; }
+.bento-card p, .project-card>p { font-size: 13px; line-height: 1.85; }
+.card-heading h3 { font-size: 21px; font-weight: 600; }
+.connected-copy .card-heading h3 { font-size: 20px; }
+.mini-app-panel strong { font-size: 18px; line-height: 1.4; letter-spacing: -.025em; }
+.mini-app-row>span:last-child, .phone-bottom, .mini-app-title>span:last-child { font-family: 'DejaVu Sans', sans-serif; }
+.tags span { font-size: 10px; font-weight: 400; line-height: 1.55; padding-block: 4px; }
+.filter { font-size: 11px; font-weight: 500; }
+.project-count { font-size: 10px; }
+.project-meta { font-size: 9px; letter-spacing: .09em; line-height: 1.6; }
+.project-title h3 { font-size: 25px; font-weight: 600; letter-spacing: -.035em; line-height: 1.4; }
+.image-caption { font-size: 8px; letter-spacing: .08em; }
+.section-footnote { font-size: 11px; }
+.about-copy>p:not(.eyebrow), .contact-copy>p:not(.eyebrow), .detail-columns p { font-size: 14px; line-height: 1.9; }
+.about-copy .about-lead { font-family: var(--font-heading); font-weight: 500; letter-spacing: -.02em; }
+.about-values span { font-size: 9px; letter-spacing: .08em; }
+.about-values p { font-size: 11px; }
+.about-photo-label { font-size: 9px; letter-spacing: .1em; }
+.form-field label { font-size: 12px; font-weight: 500; }
+.form-field input, .form-field textarea { font-size: 13px; line-height: 1.6; }
+.form-note, .form-status, .email-row { font-size: 11px; line-height: 1.8; }
+.contact-points { font-size: 12px; line-height: 2.6; }
+.copy-email, .text-link { font-size: 12px; }
+.footer p { font-size: 11px; }
+.footer .brand, .footer .brand small { font-size: 11px; }
+.detail-heading h1 { font-size: clamp(42px, 5vw, 66px); letter-spacing: -.045em; }
+.detail-lead { font-size: 20px; line-height: 1.65; letter-spacing: -.015em; }
+.breadcrumb, .gallery-hint { font-size: 12px; }
+.detail-note { font-size: 11px!important; }
+.screenshot-card>span { font-size: 11px; line-height: 1.6; }
+.next-project { font-family: var(--font-heading); font-weight: 500; letter-spacing: -.025em; }
+.next-project small { font-family: var(--font-body); letter-spacing: .13em; font-size: 10px; font-weight: 400; }
+@media(max-width:1100px) {
+  .card-heading h3, .connected-copy .card-heading h3 { font-size: 18px; }
+  .brand { font-size: 13px; }
+}
+@media(max-width:800px) {
+  .hero h1 { font-size: clamp(40px, 5.6vw, 47px); }
+  .hero-caption { font-size: 8px; gap: 9px; }
+  .card-heading { gap: 9px; }
+  .card-heading h3, .connected-copy .card-heading h3 { font-size: 16px; }
+  .bento-card p { font-size: 12px; }
+}
+@media(max-width:600px) {
+  .hero h1 { font-size: clamp(37px, 9vw, 52px); letter-spacing: -.04em; line-height: 1.17; }
+  .hero-description { font-size: 14px; }
+  h2, .section-heading h2 { font-size: 34px; letter-spacing: -.04em; }
+  .about-copy h2, .contact-copy h2 { font-size: 35px; }
+  .brand { font-size: 12px; }
+  .brand small { font-size: 10px; }
+  .hero-caption { font-size: 8px; letter-spacing: .06em; gap: 10px; }
+  .card-heading h3, .connected-copy .card-heading h3 { font-size: 20px; }
+  .bento-card p, .project-card>p, .section-heading>p, .section-heading.centered>p:last-child { font-size: 13px; }
+  .project-title h3 { font-size: 23px; }
+  .filter { font-size: 10px; padding-inline: 11px; }
+  .project-meta { font-size: 8px; }
+  .image-caption { font-size: 7px; }
+  .detail-heading h1 { font-size: 42px; }
+  .detail-lead { font-size: 18px; }
+  .contact-points { font-size: 11px; }
+  .section-footnote, .footer p { font-size: 10px; }
+  .email-row { font-size: 10px; }
+}

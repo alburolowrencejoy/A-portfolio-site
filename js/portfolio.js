@@ -149,6 +149,86 @@
   }
 
   const carousel = createProjectCarousel(document.querySelector('#project-track'));
+
+  function animateBento() {
+    const grid = document.querySelector('.bento-grid');
+    const code = grid?.querySelector('.code-window pre');
+    if (!grid || !code) return;
+    const original = code.innerHTML;
+    const snippets = [
+      "const experience = {\n  purpose: 'make life easier',\n  details: 'thoughtfully crafted',\n  builtFor: 'people'\n};",
+      "const connection = {\n  devices: 'working together',\n  updates: 'in real time',\n  poweredBy: 'curiosity'\n};",
+      "const nextIdea = {\n  design: 'clear and simple',\n  build: 'web and mobile',\n  goal: 'something useful'\n};"
+    ];
+    let snippet = 0;
+    let count = snippets[0].length;
+    let deleting = true;
+    let timer;
+    let inView = !('IntersectionObserver' in window);
+
+    function render() {
+      const lines = snippets[snippet].slice(0, count).split('\n');
+      const fragment = document.createDocumentFragment();
+      lines.forEach((line, index) => {
+        const number = document.createElement('span');
+        number.className = 'code-dim';
+        number.textContent = String(index + 1).padStart(2, '0');
+        fragment.append(number, ' ');
+        // Build syntax highlights as text nodes, never executable HTML.
+        line.split(/('.*?'|\bconst\b)/g).forEach(part => {
+          const token = document.createElement('span');
+          token.className = part === 'const' ? 'code-purple' : part.startsWith("'") ? 'code-mint' : '';
+          token.textContent = part;
+          fragment.append(token);
+        });
+        if (index < lines.length - 1) fragment.append('\n');
+      });
+      const cursor = document.createElement('span');
+      cursor.className = 'code-cursor';
+      fragment.append(cursor);
+      code.replaceChildren(fragment);
+    }
+
+    const active = () => inView && !document.hidden && !reducedMotion.matches;
+    function tick() {
+      if (!active()) return;
+      count += deleting ? -1 : 1;
+      render();
+      let delay = deleting ? 18 : 42;
+      if (count === 0) {
+        snippet = (snippet + 1) % snippets.length;
+        deleting = false;
+        delay = 350;
+      } else if (count === snippets[snippet].length && !deleting) {
+        deleting = true;
+        delay = 2200;
+      }
+      timer = setTimeout(tick, delay);
+    }
+    function sync() {
+      clearTimeout(timer);
+      grid.classList.toggle('bento-animating', active());
+      if (reducedMotion.matches) {
+        code.innerHTML = original;
+        snippet = 0;
+        count = snippets[0].length;
+        deleting = true;
+      } else if (active()) {
+        render();
+        timer = setTimeout(tick, 1200);
+      }
+    }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        inView = entries[0].isIntersecting;
+        sync();
+      }, { threshold: .05 }).observe(grid);
+    }
+    document.addEventListener('visibilitychange', sync);
+    reducedMotion.addEventListener('change', sync);
+    sync();
+  }
+  animateBento();
   document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => {
     document.querySelectorAll('[data-filter]').forEach(item => {
       const selected = item === button;

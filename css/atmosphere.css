@@ -56,6 +56,29 @@ body { background: var(--canvas); isolation: isolate; }
 @keyframes canvas-rays-drift { from { transform: rotate(-16deg) translateY(-25px); opacity: .2; } to { transform: rotate(18deg) translateY(25px); opacity: .55; } }
 @keyframes canvas-gradient-flow { from { transform: translate3d(-5%,-3%,0) scale(.96); } to { transform: translate3d(6%,5%,0) scale(1.08); } }
 @keyframes canvas-wave-flow { from { transform: translate3d(-8%,6%,0) rotate(-15deg); opacity: .45; } to { transform: translate3d(7%,-8%,0) rotate(8deg); opacity: .85; } }
+/* Motion stays inside the illustrations, leaving the charcoal cards calm. */
+.phone-orbit::before, .phone-orbit::after { content: ''; position: absolute; inset: -12px; border: 1px solid #75dab13b; border-radius: 43% 57% 53% 47%; background: radial-gradient(ellipse at 30% 30%, #46f8a10a, transparent 65%); animation: phone-wave 9s ease-in-out infinite; }
+.phone-orbit::after { inset: -28px; animation-delay: -4.5s; animation-direction: reverse; border-color: #86c6ea20; }
+@keyframes phone-wave { 0%,100% { transform: rotate(0deg) scale(.93); border-radius: 43% 57% 53% 47%; opacity: .35; } 50% { transform: rotate(180deg) scale(1.09); border-radius: 57% 43% 45% 55%; opacity: .9; } }
+.connection-art { --orbit-radius: 90px; }
+.connection-node { top: 50%; left: 50%; right: auto; bottom: auto; animation: connected-orbit 28s linear infinite; }
+.node-one { animation-delay: -3s; }
+.node-two { animation-delay: -10s; }
+.node-three { animation-delay: -17s; }
+.node-four { animation-delay: -24s; }
+@keyframes connected-orbit { from { transform: translate(-50%,-50%) rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg); } }
+.connection-core { animation: connected-breathe 4s ease-in-out infinite; }
+@keyframes connected-breathe { 0%,100% { box-shadow: 0 0 25px #46f8a124; } 50% { box-shadow: 0 0 48px #46f8a14a; } }
+.code-window pre { min-height: calc(9.5em + 34px); }
+.code-cursor { display: inline-block; width: 1px; height: 1em; background: #76d6a1; vertical-align: -.15em; animation: code-blink 1s steps(1) infinite; }
+@keyframes code-blink { 50% { opacity: 0; } }
+.bento-grid:not(.bento-animating) .phone-orbit::before, .bento-grid:not(.bento-animating) .phone-orbit::after, .bento-grid:not(.bento-animating) .connection-node, .bento-grid:not(.bento-animating) .connection-core, .bento-grid:not(.bento-animating) .code-cursor { animation-play-state: paused; }
+@media(max-width:600px) { .connection-art { --orbit-radius: 78px; } }
+@media(prefers-reduced-motion:reduce) {
+  .phone-orbit::before, .phone-orbit::after, .connection-node, .connection-core, .code-cursor { animation: none; }
+  .connection-node { top: auto; left: auto; }
+  .node-one { top: 6px; left: 41px; }.node-two { right: 0; top: 48px; }.node-three { bottom: 7px; left: 34px; }.node-four { bottom: 25px; right: 8px; }
+}
 @media(max-width:600px) { .page-ambient::before { background-size: 72px 72px; }.ambient-rays { left: -820px; }.ambient-wave { width: 170vw; right: -70vw; } }
 @media(prefers-reduced-motion:reduce) {
   .ambient-rays, .ambient-wave, .page-ambient::after { animation: none; }

@@ -30,7 +30,7 @@ Project details use `project.html?project=<slug>`:
 
 Sogesyon is a mental-health community app with emotion tracking and discussion forums, as described by the project owner. Project data and screenshot captions live in `js/project.js`; homepage cards live in `index.html`.
 
-The latest-project stack strip, expertise cards, About copy, and grouped toolbox reflect the technologies in the supplied project repositories. The toolbox groups web/interfaces, mobile, backend/data, and real-time/systems. Existing Flutter, Laravel, Firebase, Java, and IoT tools remain included; no proficiency percentages or unsupported experience claims are added.
+The latest-project stack strip, expertise cards, and About copy reflect the technologies in the supplied project repositories. All technologies are merged into the existing Mobile experiences, Web development, and Connected solutions cards; there is no separate toolbox section. Existing Flutter, Laravel, Firebase, Java, and IoT tools remain included; no proficiency percentages or unsupported experience claims are added.
 
 ## Supplied screenshots
 

@@ -55,10 +55,14 @@ Javank now uses `img/projects/javank-signin-enhanced.png`, a 1648 × 954 AI-enha
 
 ## Interactions
 
+- Dark, mint-accented layout inspired by the supplied visual reference, including a floating navigation bar and a bento expertise grid.
+- The original `img/logo-white.png` logo is used in navigation and footers; `img/favicon.png` restores the original favicon. `img/my-logo.png` is retained as the touch icon.
+- Bento cards enter from left, right, and below using CSS transforms and an IntersectionObserver, with staggered delays. Reduced-motion preferences show the final layout immediately. Project and other section reveals use the same progressive enhancement; content remains available without JavaScript.
 - Six category filters cover all seven projects.
 - Project galleries open the original screenshots in a native modal dialog. Use previous/next buttons or arrow keys to browse; Escape or Close dismisses the viewer and returns keyboard focus.
 - Every project has a detail view and next-project navigation. The three supplied repository URLs are linked directly; projects without known URLs offer email contact instead of guessed links.
 - Contact opens the visitor’s email application. Copy email uses the Clipboard API with fallback guidance. No message delivery is claimed by the site.
+- The contact form validates name, email, subject, and message, then creates an explicit link to a prefilled `mailto:` draft. The visitor opens the draft, reviews it, and sends it in their email app. No backend, credentials, or form service is required; creating the draft never navigates away from the portfolio.
 - Navigation, scroll effects, mobile layouts, and reduced-motion preferences are handled without external libraries.
 
 ## Verification

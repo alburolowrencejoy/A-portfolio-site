@@ -10,38 +10,50 @@ From the repository root:
 python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-Visit `http://127.0.0.1:8000`. No package installation or build is required. The site also works on GitHub Pages, including project detail URLs.
+Visit `http://127.0.0.1:8000`. No package installation or build is required. Relative links work on GitHub Pages, including project detail URLs.
 
-## Structure
+## Projects
 
-- `index.html`: selected work, about, expertise, and contact.
-- `project.html?project=smart-switch`: Smart Switch overview.
-- `project.html?project=shareplate`: SharePlate overview.
-- `project.html?project=ai-virtual-office`: AI Virtual Office overview.
-- `project.html?project=career-connect`: restored Career Connect overview.
-- `project.html?project=icsa-mobile-app`: restored ICSA Mobile App overview.
-- `project.html?project=javank`: restored Javank overview.
-- `css/portfolio.css`: responsive layout, hover effects, and reduced-motion support.
-- `js/portfolio.js`: mobile navigation, project filtering, scroll reveals, and email copying.
-- `js/project.js`: project descriptions and next-project navigation.
-- `img/projects/`: project images copied from the owner-provided repositories.
+Project details use `project.html?project=<slug>`:
 
-## Project materials
+| Project | Slug | Tools |
+| --- | --- | --- |
+| Smart Switch | `smart-switch` | Flutter, Dart, Firebase, ESP32 |
+| SharePlate | `shareplate` | Next.js, TypeScript, Supabase, Tailwind CSS, Expo |
+| AI Virtual Office | `ai-virtual-office` | Laravel, PHP, Reverb, AI agents |
+| Career Connect | `career-connect` | Laravel, PHP |
+| ICSA Mobile App | `icsa-mobile-app` | Flutter |
+| Javank | `javank` | Java |
+| Sogesyon | `sogesyon` | HTML, CSS, SQL |
 
-Project descriptions live in `js/project.js`; keep the summaries in `index.html` in sync. Projects with a supplied GitHub repository link to it from their detail view. No hosted demo URL was supplied.
+Sogesyon is a mental-health community app with emotion tracking and discussion forums, as described by the project owner. Project data and screenshot captions live in `js/project.js`; homepage cards live in `index.html`.
 
-Career Connect, ICSA Mobile App, and Javank retain their original cover artwork and descriptions. Their detail views offer email contact until repository or live URLs are supplied; they do not link to guessed destinations. Smart Switch covers both web and mobile. Its current web sign-in, web dashboard, and mobile dashboard were shown in chat, but the attachment files were not accessible to the workspace; the existing promotional image remains until the original PNG/JPG files are available.
+## Supplied screenshots
 
-Asset sources:
+These images are exact, unedited copies from the owner’s `asset.rar` upload:
 
-- Smart Switch: `promo/phone-img.jpg` from [smartpowerswitch](https://github.com/alburolowrencejoy/smartpowerswitch), revision `3b7d6e20e35625a8741731b9693df0e36250309f`. This is repository promotional artwork.
-- SharePlate: `public/mock-food/prepared-meals.jpg` and `public/brand/app-icon.png` from [shareplate](https://github.com/alburolowrencejoy/shareplate). These are food and brand assets, not a UI screenshot.
-- AI Virtual Office: `public/img/office-map.png` from [ai-virtual-office](https://github.com/alburolowrencejoy/ai-virtual-office). This is the actual office map asset.
+| Archive file | Portfolio file | View |
+| --- | --- | --- |
+| `samrtswitch.png` | `img/projects/smart-switch-signin.png` | Smart Switch web sign-in |
+| `smartswitch.png` | `img/projects/smart-switch-dashboard.png` | Smart Switch web dashboard |
+| `shareplate.png` | `img/projects/shareplate-mobile.png` | SharePlate mobile donations |
+| `ai.png` | `img/projects/ai-office-signin.png` | AI Virtual Office sign-in |
+| `aii.png` | `img/projects/ai-office-dashboard.png` | AI Virtual Office dashboard |
+| `aiii.png` | `img/projects/ai-office-live.png` | AI Virtual Office live office |
+| `careeer.png` | `img/projects/career-connect-home.png` | Career Connect signed out |
+| `careerrr.png` | `img/projects/career-connect-signedin.png` | Career Connect signed in |
+| `sogesyon.jpg` | `img/projects/sogesyon-signin.jpg` | Sogesyon sign-in |
 
-## Contact
+The archive does not contain SharePlate’s desktop screenshots or Smart Switch’s mobile screenshot shown earlier in chat. The portfolio uses the supplied files above. ICSA Mobile App and Javank retain their original cover artwork, labeled as such. Older repository images remain available on disk but are no longer used by the updated project cards and details.
 
-Contact buttons open the visitor’s email application. Copy email uses the browser Clipboard API with a helpful fallback when permission is unavailable. No message is sent or claimed to be delivered by the website. The old PHP mail handler is retained for reference but is not used by the new UI.
+## Interactions
+
+- Six category filters cover all seven projects.
+- Project galleries open the original screenshots in a native modal dialog. Use previous/next buttons or arrow keys to browse; Escape or Close dismisses the viewer and returns keyboard focus.
+- Every project has a detail view and next-project navigation. The three supplied repository URLs are linked directly; projects without known URLs offer email contact instead of guessed links.
+- Contact opens the visitor’s email application. Copy email uses the Clipboard API with fallback guidance. No message delivery is claimed by the site.
+- Navigation, scroll effects, mobile layouts, and reduced-motion preferences are handled without external libraries.
 
 ## Verification
 
-Check all six project links, next/back navigation, all six filters, the mobile menu, copy email, and reduced-motion preferences. Validate narrow and wide viewports and ensure local assets return HTTP 200. Template blog, elements, documentation, and duplicate portfolio HTML pages have been removed; recover them from Git history if needed.
+Check all seven project links, the complete next-project cycle, six filters, screenshot galleries and keyboard controls, mobile navigation, email copying, and reduced motion. Validate narrow and wide viewports and confirm images load successfully. Template blog, documentation, elements, and duplicate HTML pages were removed; they remain recoverable from Git history.

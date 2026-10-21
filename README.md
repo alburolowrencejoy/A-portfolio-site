@@ -47,9 +47,11 @@ These images are exact, unedited copies from the owner’s `asset.rar` and `as.r
 | `shareplate desktop.png` | `img/projects/shareplate-listings.png` | SharePlate desktop food listings |
 | `mobile smartswitch.jpg` | `img/projects/smart-switch-mobile-signin.jpg` | Smart Switch mobile sign-in |
 
-The second archive supplies SharePlate’s desktop views and Smart Switch’s mobile sign-in view. SharePlate’s desktop homepage is its cover, with desktop listings and mobile donations in its gallery. Smart Switch’s gallery includes its web dashboard, web sign-in, and mobile sign-in. ICSA Mobile App and Javank retain their original cover artwork, labeled as such. Older repository images remain available on disk but are no longer used by the updated project cards and details.
+The second archive supplies SharePlate’s desktop views and Smart Switch’s mobile sign-in view. SharePlate’s desktop homepage is its cover, with desktop listings and mobile donations in its gallery. Smart Switch’s gallery includes its web dashboard, web sign-in, and mobile sign-in. ICSA Mobile App retains its original cover artwork, labeled as such. Older repository images remain available on disk but are no longer used by the updated project cards and details.
 
 Project covers use landing or sign-in screens rather than dashboards: Smart Switch web sign-in, SharePlate desktop homepage, AI Virtual Office owner landing/sign-in, Career Connect landing, and Sogesyon sign-in. Dashboard and office screenshots remain accessible in the detail-page galleries.
+
+Javank now uses `img/projects/javank-signin-enhanced.png`, a 1648 × 954 AI-enhanced reconstruction of the owner’s small ATM login screenshot. It preserves the card-number/PIN layout and sign-in, clear, and sign-up controls. The cover and gallery identify it as an enhanced preview, rather than an untouched application capture. The old generic cover is retained on disk but is no longer displayed for Javank.
 
 ## Interactions
 

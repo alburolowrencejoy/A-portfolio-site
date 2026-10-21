@@ -163,8 +163,8 @@
       "name": "Javank",
       "category": "SYSTEM DEVELOPMENT",
       "summary": "A Java banking system project.",
-      "image": "projects-4.jpg",
-      "alt": "Original Javank portfolio cover artwork",
+      "image": "javank-signin-enhanced.png",
+      "alt": "Enhanced reconstruction of the Javank ATM login screen with Card No, PIN, Sign In, Clear, and Sign Up controls",
       "overview": "Javank is the Java banking system project from my original portfolio.",
       "focus": "This project represents my work in Java and system development. Contact me for further details or a walkthrough.",
       "tags": [
@@ -172,7 +172,14 @@
         "Banking system",
         "System development"
       ],
-      "note": "Original portfolio cover artwork, not an application screenshot. No public repository or demo URL has been supplied.",
+      "note": "AI-enhanced reconstruction of the original low-resolution screenshot supplied by the project owner. No public repository or demo URL has been supplied.",
+      "gallery": [
+        {
+          "image": "javank-signin-enhanced.png",
+          "alt": "Enhanced Javank ATM login preview",
+          "caption": "Desktop · ATM sign in (enhanced preview)"
+        }
+      ],
       "next": "sogesyon",
       "nextName": "Sogesyon"
     },

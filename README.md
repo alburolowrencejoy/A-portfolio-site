@@ -21,7 +21,7 @@ Project details use `project.html?project=<slug>`:
 | Project | Slug | Tools |
 | --- | --- | --- |
 | Smart Switch | `smart-switch` | Flutter, Dart, Firebase, ESP32 |
-| SharePlate | `shareplate` | Next.js, TypeScript, Supabase, Tailwind CSS, Expo |
+| SharePlate | `shareplate` | Next.js, React, TypeScript, Supabase/PostgreSQL, Tailwind CSS, React Native/Expo |
 | AI Virtual Office | `ai-virtual-office` | Laravel, PHP, Reverb, AI agents |
 | Career Connect | `career-connect` | Laravel, PHP |
 | ICSA Mobile App | `icsa-mobile-app` | Flutter |
@@ -29,6 +29,8 @@ Project details use `project.html?project=<slug>`:
 | Sogesyon | `sogesyon` | HTML, CSS, SQL |
 
 Sogesyon is a mental-health community app with emotion tracking and discussion forums, as described by the project owner. Project data and screenshot captions live in `js/project.js`; homepage cards live in `index.html`.
+
+The latest-project stack strip, expertise cards, About copy, and grouped toolbox reflect the technologies in the supplied project repositories. The toolbox groups web/interfaces, mobile, backend/data, and real-time/systems. Existing Flutter, Laravel, Firebase, Java, and IoT tools remain included; no proficiency percentages or unsupported experience claims are added.
 
 ## Supplied screenshots
 

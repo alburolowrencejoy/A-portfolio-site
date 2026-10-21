@@ -50,9 +50,12 @@
       "focus": "The platform supports organization verification, food listings, claims, pickup and distribution tracking, notifications, and impact reporting. AI-assisted listing drafts help donors get started, while database rules and role-based dashboards support the donation lifecycle.",
       "tags": [
         "Next.js",
+        "React",
         "TypeScript",
         "Supabase",
+        "PostgreSQL",
         "Tailwind CSS",
+        "React Native",
         "Expo"
       ],
       "note": "Original desktop and mobile screenshots supplied by the project owner.",

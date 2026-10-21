@@ -1,71 +1,64 @@
-/* One shared canvas for the homepage and every project view. */
-:root { --canvas: #090d0c; --canvas-line: #294031; }
+/* Neutral surfaces, with all decorative movement confined to the canvas. */
+:root { --canvas: #0a0b0e; --canvas-line: #2b3038; }
 body { background: var(--canvas); isolation: isolate; }
-.page-ambient {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse at 0% 15%, #245b3c17, transparent 48%),
-    radial-gradient(ellipse at 100% 80%, #2b654420, transparent 48%),
-    var(--canvas);
-}
+.page-ambient { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background: var(--canvas); }
 .page-ambient::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(#7dffc405 1px, transparent 1px), linear-gradient(90deg,#7dffc405 1px,transparent 1px);
+  background-image: linear-gradient(#b1c2de04 1px,transparent 1px),linear-gradient(90deg,#b1c2de04 1px,transparent 1px);
   background-size: 96px 96px;
-  mask-image: radial-gradient(ellipse at 50% 45%, #0009 15%, transparent 85%);
+  mask-image: radial-gradient(ellipse at center,#0009 15%,transparent 85%);
+}
+.page-ambient::after {
+  content: '';
+  position: absolute;
+  inset: -25%;
+  background: radial-gradient(ellipse at 25% 40%,#357fab16,transparent 45%),radial-gradient(ellipse at 70% 65%,#3cbd9114,transparent 48%);
+  filter: blur(35px);
+  animation: canvas-gradient-flow 24s ease-in-out infinite alternate;
 }
 .ambient-rays {
   position: absolute;
-  width: 620px;
-  height: 620px;
-  left: -440px;
-  top: 12%;
+  width: 1000px;
+  height: 1000px;
+  left: -690px;
+  top: -100px;
   border-radius: 50%;
-  background: repeating-conic-gradient(from 10deg, transparent 0deg 11deg, #5fffb51b 11.2deg 11.45deg, transparent 11.8deg 22deg);
-  mask-image: radial-gradient(circle, transparent 8%, #0007 45%, transparent 73%);
+  background: repeating-conic-gradient(from 10deg,transparent 0deg 12deg,#9bd9f02b 12.1deg 12.4deg,transparent 12.7deg 24deg);
+  mask-image: radial-gradient(circle,transparent 12%,#000a 45%,transparent 73%);
+  transform-origin: center;
+  animation: canvas-rays-drift 36s ease-in-out infinite alternate;
 }
 .ambient-wave {
   position: absolute;
-  width: 740px;
-  height: 740px;
-  right: -540px;
-  top: 30%;
-  border: 1px solid #61ffc218;
+  width: 130vw;
+  height: 70vh;
+  right: -40vw;
+  bottom: -10vh;
   border-radius: 50%;
-  box-shadow: 0 0 75px #46f8a105;
-  animation: ambient-wave-drift 20s ease-in-out infinite alternate;
+  background: radial-gradient(ellipse at 50% 50%,#4777d021,transparent 60%),linear-gradient(135deg,transparent 35%,#5cceaa1b 50%,transparent 65%);
+  filter: blur(42px);
+  animation: canvas-wave-flow 20s ease-in-out infinite alternate;
 }
-.ambient-wave::before, .ambient-wave::after {
-  content: '';
-  position: absolute;
-  inset: 65px;
-  border: 1px solid #61ffc214;
-  border-radius: inherit;
-}
-.ambient-wave::after { inset: -65px; border-color: #61ffc20c; }
-.hero, .work-section, .contact-section { background: transparent; border-color: #253b2e; }
+.hero, .work-section, .contact-section { background: transparent; border-color: #262b33; }
 .hero-grid { display: none; }
-.stack-strip { background: #12201966; border-color: #253b2e; }
-.nav-wrap { background: #19231fed; border-color: #344b3d; }
-.bento-card { background: radial-gradient(ellipse at 0 0,#1d553333,transparent 65%),#111a15; border-color: #2c4234; }
-.contact-form { background: #111b16; }
-.form-field input, .form-field textarea { background: #202c25; }
-.about-portrait { background: radial-gradient(ellipse at bottom,#264832,#111a15 75%); }
-@keyframes ambient-wave-drift {
-  from { transform: translateY(-20px) scale(.95); opacity: .5; }
-  to { transform: translateY(25px) scale(1.05); opacity: .85; }
-}
-@media(max-width:600px) {
-  .page-ambient::before { background-size: 72px 72px; opacity: .7; }
-  .ambient-rays { opacity: .6; left: -490px; }
-  .ambient-wave { right: -620px; opacity: .45; }
-}
+.stack-strip { background: #14171b80; border-color: #282e36; }
+.nav-wrap { background: #22252aed; border-color: #343a44; }
+.bento-card { background: #14171b; border-color: #30353e; }
+.bento-card:hover { border-color: #565e6b; }
+.tags span { background: #22262c; border-color: #3b424d; color: #bcc4cf; }
+.contact-form, .detail-sidebar, .screenshot-card { background: #15181e; border-color: #353d48; }
+.form-field input, .form-field textarea { background: #22262d; border-color: #3a424e; }
+.about-portrait { background: radial-gradient(ellipse at bottom,#2d3742,#15181d 75%); border-color: #363e49; }
+.about-photo-label { background: #1b2027e8; border-color: #454d5a; }
+.detail-image, .screenshot-card>img { background: #1b2027; border-color: #343b47; }
+@keyframes canvas-rays-drift { from { transform: rotate(-16deg) translateY(-25px); opacity: .2; } to { transform: rotate(18deg) translateY(25px); opacity: .55; } }
+@keyframes canvas-gradient-flow { from { transform: translate3d(-5%,-3%,0) scale(.96); } to { transform: translate3d(6%,5%,0) scale(1.08); } }
+@keyframes canvas-wave-flow { from { transform: translate3d(-8%,6%,0) rotate(-15deg); opacity: .45; } to { transform: translate3d(7%,-8%,0) rotate(8deg); opacity: .85; } }
+@media(max-width:600px) { .page-ambient::before { background-size: 72px 72px; }.ambient-rays { left: -820px; }.ambient-wave { width: 170vw; right: -70vw; } }
 @media(prefers-reduced-motion:reduce) {
-  .ambient-wave { animation: none; opacity: .6; }
+  .ambient-rays, .ambient-wave, .page-ambient::after { animation: none; }
+  .ambient-rays { opacity: .25; }
+  .ambient-wave { opacity: .55; }
 }

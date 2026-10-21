@@ -44,6 +44,35 @@ body { background: var(--canvas); isolation: isolate; }
 .hero, .work-section, .contact-section { background: transparent; border-color: #262b33; }
 .hero-grid { display: none; }
 .stack-strip { background: #14171b80; border-color: #282e36; }
+.stack-strip .container { gap: 24px; }
+.stack-strip .stack-label { flex: 0 0 110px; max-width: 110px; }
+.stack-viewport { flex: 1; min-width: 0; overflow: hidden; mask-image: linear-gradient(90deg,transparent,#000 32px,#000 calc(100% - 32px),transparent); }
+.stack-track { display: flex; width: max-content; }
+.stack-marquee-ready .stack-track { animation: stack-glide 38s linear infinite; }
+.stack-group { display: flex; align-items: center; flex-shrink: 0; gap: 32px; list-style: none; padding: 0 32px 0 0; margin: 0; }
+.stack-item { display: flex; align-items: center; gap: 11px; white-space: nowrap; padding-block: 22px; font-family: var(--font-heading); font-size: 18px; font-weight: 600; transition: color .2s; }
+.stack-item svg { flex-shrink: 0; opacity: .8; }
+.stack-item i { margin-left: 22px; }
+.stack-item:hover { color: var(--green); }
+.stack-strip:hover .stack-track, .stack-strip:focus-within .stack-track, .stack-strip.is-paused .stack-track { animation-play-state: paused; }
+.stack-toggle { display: grid; place-items: center; flex: 0 0 32px; width: 32px; height: 32px; padding: 0; border: 1px solid #3b424d; border-radius: 50%; background: transparent; color: #b8c2ce; font-size: 13px; }
+.stack-toggle[hidden] { display: none; }
+.stack-toggle:hover { color: var(--green); border-color: var(--green); }
+@keyframes stack-glide { to { transform: translateX(-50%); } }
+@media(max-width:600px) {
+  .stack-strip .container { gap: 10px; padding-block: 18px; }
+  .stack-strip .stack-label { flex: 0 0 100%; max-width: none; }
+  .stack-item { font-size: 16px; padding-block: 12px; }
+  .stack-strip .stack-item i { display: block; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .stack-viewport { mask-image: none; overflow: visible; }
+  .stack-track { width: 100%; animation: none; }
+  .stack-group { flex: 0 1 100%; min-width: 0; flex-wrap: wrap; gap: 8px 24px; padding: 10px 0; }
+  .stack-group[aria-hidden="true"], .stack-strip .stack-toggle { display: none; }
+  .stack-item { padding-block: 5px; font-size: 15px; }
+  .stack-strip .stack-item i { display: none; }
+}
 .nav-wrap { background: #22252aed; border-color: #343a44; }
 .bento-card { background: #14171b; border-color: #30353e; }
 .bento-card:hover { border-color: #565e6b; }

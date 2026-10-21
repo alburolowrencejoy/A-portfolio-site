@@ -3,6 +3,25 @@
   document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
+  const stackStrip = document.querySelector('.stack-strip');
+  const stackTrack = stackStrip?.querySelector('.stack-track');
+  const stackGroup = stackTrack?.querySelector('.stack-group');
+  const stackToggle = stackStrip?.querySelector('.stack-toggle');
+  if (stackGroup && stackToggle) {
+    const duplicate = stackGroup.cloneNode(true);
+    duplicate.setAttribute('aria-hidden', 'true');
+    duplicate.setAttribute('inert', '');
+    stackTrack.append(duplicate);
+    stackStrip.classList.add('stack-marquee-ready');
+    stackToggle.hidden = false;
+    stackToggle.addEventListener('click', () => {
+      const paused = stackStrip.classList.toggle('is-paused');
+      stackToggle.setAttribute('aria-pressed', String(paused));
+      stackToggle.setAttribute('aria-label', paused ? 'Resume stack animation' : 'Pause stack animation');
+      stackToggle.firstElementChild.textContent = paused ? '▶' : 'Ⅱ';
+    });
+  }
+
   const menu = document.querySelector('.menu-toggle');
   const navigation = document.querySelector('#navigation');
   const closeMenu = () => {

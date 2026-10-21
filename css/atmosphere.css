@@ -1,0 +1,71 @@
+/* One shared canvas for the homepage and every project view. */
+:root { --canvas: #090d0c; --canvas-line: #294031; }
+body { background: var(--canvas); isolation: isolate; }
+.page-ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 0% 15%, #245b3c17, transparent 48%),
+    radial-gradient(ellipse at 100% 80%, #2b654420, transparent 48%),
+    var(--canvas);
+}
+.page-ambient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(#7dffc405 1px, transparent 1px), linear-gradient(90deg,#7dffc405 1px,transparent 1px);
+  background-size: 96px 96px;
+  mask-image: radial-gradient(ellipse at 50% 45%, #0009 15%, transparent 85%);
+}
+.ambient-rays {
+  position: absolute;
+  width: 620px;
+  height: 620px;
+  left: -440px;
+  top: 12%;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 10deg, transparent 0deg 11deg, #5fffb51b 11.2deg 11.45deg, transparent 11.8deg 22deg);
+  mask-image: radial-gradient(circle, transparent 8%, #0007 45%, transparent 73%);
+}
+.ambient-wave {
+  position: absolute;
+  width: 740px;
+  height: 740px;
+  right: -540px;
+  top: 30%;
+  border: 1px solid #61ffc218;
+  border-radius: 50%;
+  box-shadow: 0 0 75px #46f8a105;
+  animation: ambient-wave-drift 20s ease-in-out infinite alternate;
+}
+.ambient-wave::before, .ambient-wave::after {
+  content: '';
+  position: absolute;
+  inset: 65px;
+  border: 1px solid #61ffc214;
+  border-radius: inherit;
+}
+.ambient-wave::after { inset: -65px; border-color: #61ffc20c; }
+.hero, .work-section, .contact-section { background: transparent; border-color: #253b2e; }
+.hero-grid { display: none; }
+.stack-strip { background: #12201966; border-color: #253b2e; }
+.nav-wrap { background: #19231fed; border-color: #344b3d; }
+.bento-card { background: radial-gradient(ellipse at 0 0,#1d553333,transparent 65%),#111a15; border-color: #2c4234; }
+.contact-form { background: #111b16; }
+.form-field input, .form-field textarea { background: #202c25; }
+.about-portrait { background: radial-gradient(ellipse at bottom,#264832,#111a15 75%); }
+@keyframes ambient-wave-drift {
+  from { transform: translateY(-20px) scale(.95); opacity: .5; }
+  to { transform: translateY(25px) scale(1.05); opacity: .85; }
+}
+@media(max-width:600px) {
+  .page-ambient::before { background-size: 72px 72px; opacity: .7; }
+  .ambient-rays { opacity: .6; left: -490px; }
+  .ambient-wave { right: -620px; opacity: .45; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .ambient-wave { animation: none; opacity: .6; }
+}
